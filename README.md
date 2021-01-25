@@ -16,7 +16,7 @@ The site will have two functions, a seller and a buyer function. In order to use
 
 Buyers will have specific functions they can perform using Silent Athletics. Mainly, they will be able to search their local areas for used sports merchandise. Pictures of the items will be displayed with a description created by the seller, and users will be able to scroll through the photos to further inspect the item. There will also be a place for the potential buyer to ask questions about details not specified, allowing them to interact with the seller. If they see an item that they like, they will be able to place a bid. If another user bids higher, they will receive a notification, and they can either choose to raise their bid, or forfeit the item. If they do not want to bid immediately, they will be able to save the post so that they can easily return to the item at a later time. Once they have won an auction, they’ll be given the address that the seller intends to meet them at in order to claim their item. 
 	
-	Database
+Database
 	As far as the actual site, there will be a relational database that will store user accounts and items listed for sale on the site. For users, database will store:
 •	Username
 •	Password
