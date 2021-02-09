@@ -18,22 +18,23 @@ Buyers will have specific functions they can perform using Silent Athletics. Mai
 	
 #### Database
 
-As far as the actual site, there will be a relational database that will store user accounts and items listed for sale on the site. For users, database will store:
-•	Username
-•	Password
-•	Date of Birth
-•	Email address
-•	Telephone number
-•	Address 
-•	Credit/Debit card information
+As far as the actual site, there will be a relational database that will store user accounts and items listed for sale on the site.
+For users, database will store:
+*	Username
+*	Password
+*	Date of Birth
+*	Email address
+*	Telephone number
+*	Address 
+*	Credit/Debit card information
 For items:
-•	ID number
-•	Item
-•	Brand
-•	Owner of listing 
-•	How long the item is being listed on the site
-•	Starting price
-•	What the item ends up selling for 
-•	The purchaser of the item 
+*	ID number
+*	Item
+*	Brand
+*	Owner of listing 
+*	How long the item is being listed on the site
+*	Starting price
+*	What the item ends up selling for 
+*	The purchaser of the item 
 
-
+[Database Diagram](Silent%20Athletics%20Database%20Diagram.pdf) 
