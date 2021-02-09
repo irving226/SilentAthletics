@@ -27,6 +27,8 @@ For users, database will store:
 *	Telephone number
 *	Address 
 *	Credit/Debit card information
+
+
 For items:
 *	ID number
 *	Item
