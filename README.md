@@ -39,4 +39,4 @@ For items:
 *	What the item ends up selling for 
 *	The purchaser of the item 
 
-[Database Diagram](Silent%Athletics%Database%Diagram.pdf) 
+[Database Diagram]
