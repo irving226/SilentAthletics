@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #00BFFF;
+            display: flex;
+            justify-content: space-around;
+        }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #00BFFF;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: #00BFFF;
+                    color: white;
+                }
+
+            .topnav input[type=text] {
+                float: left;
+                padding: 3px;
+                border: none;
+                margin-top: 5px;
+                margin-right: 16px;
+                font-size: 15px;
+            }
+
+        .createaccount {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+           
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div>
+        <h1 class="createaccount"> Create an Account</h1>
+
+    </div>
+
+    <div class="createaccountform">
+        <form action="/action_page.php">
+            <label for="firstname">First Name:</label>
+            <input type="text"
+                   placeholder="Enter first name" name="firstname" id="fistname" required>
+
+            <label for="lastname"><b>Last Name: </b></label>
+            <input type="text"
+                   placeholder="Enter last name" name="lastname" id="lastname" required>
+
+            <label for="username"><b>Username: </b></label>
+            <input type="text"
+                   placeholder="Choose a Username" name="username" id="username" required>
+
+            <label for="email"><b>Email: </b></label>
+            <input type="text"
+                   placeholder="Email" name="email" id="email" required>
+
+            <label for="firstname"><b>Neighborhood:</b></label>
+            <input type="text"
+                   placeholder="" name="which area are you in?" id="Neighborhood" required>
+
+            <label for="date"><b>Date of Birth:</b></label>
+            <input type="date"
+                   placeholder="" name="When were you born?" id="date" required>
+
+
+            <button type="submit" class="registerbtn">Create an Account</button>
+        </form>
+
+    </div>
+</body>
+
+</html>
