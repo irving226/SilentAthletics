@@ -36,6 +36,9 @@ namespace SilentAthleticsWebApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
+            services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SilentAthleticsMeetUpScheduler")));
+
           
         }
 

@@ -23,6 +23,17 @@ namespace SilentAthleticsWebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(MeetupScheduler m)
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

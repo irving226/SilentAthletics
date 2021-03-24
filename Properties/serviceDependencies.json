@@ -7,6 +7,10 @@
     "mssql2": {
       "type": "mssql",
       "connectionId": "ItemListingsApplicationDbContext"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "SilentAthleticsMeetUpScheduler"
     }
   }
 }

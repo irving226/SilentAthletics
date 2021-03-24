@@ -167,3 +167,8 @@ D:\Documents\source\Projects\SilentAthleticsWebApp\obj\Debug\net5.0\Razor\Views\
 D:\Documents\source\Projects\SilentAthleticsWebApp\obj\Debug\net5.0\Razor\Views\ItemListings\Details.cshtml.g.cs
 D:\Documents\source\Projects\SilentAthleticsWebApp\obj\Debug\net5.0\Razor\Views\ItemListings\Edit.cshtml.g.cs
 D:\Documents\source\Projects\SilentAthleticsWebApp\obj\Debug\net5.0\Razor\Views\ItemListings\Index.cshtml.g.cs
+D:\Documents\source\Projects\SilentAthleticsWebApp\obj\Debug\net5.0\Razor\Views\MeetupSchedulers\Create.cshtml.g.cs
+D:\Documents\source\Projects\SilentAthleticsWebApp\obj\Debug\net5.0\Razor\Views\MeetupSchedulers\Delete.cshtml.g.cs
+D:\Documents\source\Projects\SilentAthleticsWebApp\obj\Debug\net5.0\Razor\Views\MeetupSchedulers\Details.cshtml.g.cs
+D:\Documents\source\Projects\SilentAthleticsWebApp\obj\Debug\net5.0\Razor\Views\MeetupSchedulers\Edit.cshtml.g.cs
+D:\Documents\source\Projects\SilentAthleticsWebApp\obj\Debug\net5.0\Razor\Views\MeetupSchedulers\Index.cshtml.g.cs

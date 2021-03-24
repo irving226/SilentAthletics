@@ -16,6 +16,8 @@ namespace SilentAthleticsWebApp.Data
         public DbSet<SilentAthleticsWebApp.Models.Accounts> Accounts { get; set; }
 
         public DbSet<SilentAthleticsWebApp.Models.ItemListings> ItemListings { get; set; }
+
+        public DbSet<SilentAthleticsWebApp.Models.MeetupScheduler> MeetupSchedulers { get; set; }
     
 }
 }
