@@ -13,7 +13,7 @@ namespace SilentAthleticsWebApp.Data
             : base(options)
         {
         }
-        public DbSet<SilentAthleticsWebApp.Models.Accounts> Accounts { get; set; }
+       
 
         public DbSet<SilentAthleticsWebApp.Models.ItemListings> ItemListings { get; set; }
 

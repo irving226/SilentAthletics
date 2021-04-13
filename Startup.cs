@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SilentAthleticsWebApp.Data;
+using SilentAthleticsWebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,27 +18,29 @@ namespace SilentAthleticsWebApp
 {
     public class Startup
     {
+
+        private IConfiguration _configuration { get;}
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("AccountsConnection")));
+            services.AddScoped<IAccountRepository, AccountRepository>();
+          
+         
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SilentAthleticsMeetUpScheduler")));
+                    options.UseSqlServer(_configuration.GetConnectionString("SilentAthleticsMeetUpScheduler")));
 
           
         }

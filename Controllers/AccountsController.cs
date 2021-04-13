@@ -12,28 +12,32 @@ namespace SilentAthleticsWebApp.Controllers
 {
     public class AccountsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+      
 
-        public AccountsController(ApplicationDbContext context)
+        private IAccountRepository _repository;
+
+        public AccountsController(IAccountRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
+
         // GET: Accounts
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Accounts.ToListAsync());
+            IQueryable<Accounts> allAccounts = _repository.GetAllAccounts();
+            return View(allAccounts);
         }
 
         // GET: Accounts/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var accounts = await _context.Accounts
+            var accounts = _repository.GetAllAccounts()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (accounts == null)
             {
@@ -46,7 +50,8 @@ namespace SilentAthleticsWebApp.Controllers
         // GET: Accounts/Create
         public IActionResult Create()
         {
-            return View();
+            IQueryable<Accounts> allProducts = _repository.GetAllAccounts(); 
+            return View(allProducts);
         }
 
         // POST: Accounts/Create
@@ -58,9 +63,6 @@ namespace SilentAthleticsWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(accounts);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
             return View(accounts);
         }
@@ -68,17 +70,8 @@ namespace SilentAthleticsWebApp.Controllers
         // GET: Accounts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var accounts = await _context.Accounts.FindAsync(id);
-            if (accounts == null)
-            {
-                return NotFound();
-            }
-            return View(accounts);
+         
+            return View();
         }
 
         // POST: Accounts/Edit/5
@@ -93,26 +86,8 @@ namespace SilentAthleticsWebApp.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(accounts);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AccountsExists(accounts.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
+          
+            
             return View(accounts);
         }
 
@@ -124,14 +99,14 @@ namespace SilentAthleticsWebApp.Controllers
                 return NotFound();
             }
 
-            var accounts = await _context.Accounts
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (accounts == null)
-            {
-                return NotFound();
-            }
-
-            return View(accounts);
+           // var accounts = await _context.Accounts
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+          // if (accounts == null)
+          // {
+          //     return NotFound();
+          // }
+          //
+          return View();
         }
 
         // POST: Accounts/Delete/5
@@ -139,15 +114,15 @@ namespace SilentAthleticsWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var accounts = await _context.Accounts.FindAsync(id);
-            _context.Accounts.Remove(accounts);
-            await _context.SaveChangesAsync();
+        //    var accounts = await _context.Accounts.FindAsync(id);
+        //    _context.Accounts.Remove(accounts);
+        //    await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AccountsExists(int id)
         {
-            return _context.Accounts.Any(e => e.Id == id);
+            return _repository.GetAllAccounts().Any(e => e.Id == id);
         }
     }
 }
