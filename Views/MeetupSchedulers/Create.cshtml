@@ -1,119 +1,100 @@
-﻿
+﻿@model MeetupScheduler
 
-@model SilentAthleticsWebApp.Models.MeetupScheduler
+<head>
+    <title>Schedule A Meetup</title>
 
-
-    <head>
-        <title>Schedule A Meetup</title>
-
-        <style type="text/css">
-            /* Set the size of the div element that contains the map */
-            #map {
-                height: 400px;
-                /* The height is 400 pixels */
-                width: 100%;
-                /* The width is the width of the web page */
-            }
-        </style>
-        <script>
-            // Initialize and add the map
-            function initMap() {
-                map = new google.maps.Map(document.getElementById("map"), {
-                    center: { lat: 39.71394, lng: -104.98349 },
-                    zoom: 15,
-                });
-            }
-
-        </script>
-
-    </head>
-    <body>
-        <h1>Schedule A Meet Up</h1>
-
-        <h4>Scheduler</h4>
-
-
-
-
-
-        <hr />
-        <div class="row">
-            <div class="col-md-4">
-                <form asp-action="Create">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="BuyerID" class="control-label"></label>
-                        <input asp-for="BuyerID" class="form-control" />
-                        <span asp-validation-for="BuyerID" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="BuyerName" class="control-label"></label>
-                        <input asp-for="BuyerName" class="form-control" />
-                        <span asp-validation-for="BuyerName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="SellerName" class="control-label"></label>
-                        <input asp-for="SellerName" class="form-control" />
-                        <span asp-validation-for="SellerName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ItemID" class="control-label"></label>
-                        <input asp-for="ItemID" class="form-control" />
-                        <span asp-validation-for="ItemID" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="StreetAddress" class="control-label"></label>
-                        <input asp-for="StreetAddress" class="form-control" />
-                        <span asp-validation-for="StreetAddress" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="City" class="control-label"></label>
-                        <input asp-for="City" class="form-control" />
-                        <span asp-validation-for="City" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="State" class="control-label"></label>
-                        <input asp-for="State" class="form-control" />
-                        <span asp-validation-for="State" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ZipCode" class="control-label"></label>
-                        <input asp-for="ZipCode" class="form-control" />
-                        <span asp-validation-for="ZipCode" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="MeetingTime" class="control-label"></label>
-                        <input asp-for="MeetingTime" class="form-control" />
-                        <span asp-validation-for="MeetingTime" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="MeetingDate" class="control-label"></label>
-                        <input asp-for="MeetingDate" class="form-control" />
-                        <span asp-validation-for="MeetingDate" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <h3>My Google Maps Demo</h3>
-        <!--The div element for the map -->
-        <div id="map">
-
-            <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc2q36Krmz8kqRNUlPfpV6s__CiAu7wQQ&callback=initMap&libraries=&v=weekly"
-                    async></script>
-
-        </div>
-
-
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
-
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <style type="text/css">
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
         }
-    </body>
+    </style>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 39.71394, lng: -104.98349 },
+                zoom: 15,
+            });
+        }
+
+    </script>
+
+</head>
+
+<h3>Denver, CO</h3>
+<!--The div element for the map -->
+<div id="map">
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc2q36Krmz8kqRNUlPfpV6s__CiAu7wQQ&callback=initMap&libraries=&v=weekly"
+            async></script>
+
+</div>
+
+
+<body>
+    <h1>Schedule A Meet Up</h1>
+
+    <h4>Scheduler</h4>
+
+    <form method="post">
+        SellerID:
+        <input asp-for="SellerID" />
+
+        <br />
+
+        SellerName:
+        <input asp-for="SellerName" />
+        <br />
+
+        BuyerID:
+        <input asp-for="BuyerID" />
+        <br />
+        BuyerName:
+        <input asp-for="BuyerName" />
+        <br />
+        ItemID:
+        <input asp-for="ItemID" />
+        <br />
+        StreetAddress:
+        <input asp-for="StreetAddress" />
+        <br />
+        City:
+        <input asp-for="City" />
+        <br />
+
+        State:
+        <input asp-for="State" />
+        <br />
+
+        ZipCode:
+        <input asp-for="ZipCode" />
+        <br />
+
+        MeetingTime:
+        <input asp-for="MeetingTime" />
+        <br />
+
+        MeetingDate:
+        <input asp-for="MeetingDate" />
+        <br />
+        <input type="submit" value="Schedule Meet Up" />
+
+
+    </form>
+
+
+
+    <div>
+        <a asp-action="Edit">Edit Itenerary</a>
+        <a asp-action="Details">View Itenerary</a>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+
+
+</body>

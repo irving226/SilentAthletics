@@ -13,12 +13,12 @@ namespace SilentAthleticsWebApp.Models
 
         //ID will be the ID of the person scheduling the Meet
 
-        [Required(ErrorMessage="Please specify an ID")]
-        public int ID { get; set; }
+[Required(ErrorMessage="Please specify an ID")]
+        public int SellerID { get; set; }
         [Required(ErrorMessage = "Please specify a name")]
-        public int BuyerName { get; set; }
+        public string BuyerName { get; set; }
         [Required(ErrorMessage = "Please specify the seller you're meeting with")]
-        public int SellerName { get; set; }
+        public string SellerName { get; set; }
         [Required(ErrorMessage = "Please specify the item's ID")]
         public int ItemID { get; set; }
 
