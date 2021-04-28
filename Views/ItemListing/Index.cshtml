@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ItemListing>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h2>My Listings</h2>
+
+@Html.ActionLink("Create a New Listing", "Create")
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartPrice)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+
+            </th>
+            <td>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ItemListing m in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => m.Item)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => m.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => m.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => m.StartPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => m.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => m.EndTime)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = m.ID })
+                    @Html.ActionLink("Details", "Details", new { id = m.ID })
+                    @Html.ActionLink("Delete", "Delete", new { id = m.ID })
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+
+
+
+
+<a asp-action="Create">Create a New Listing</a>
+
+

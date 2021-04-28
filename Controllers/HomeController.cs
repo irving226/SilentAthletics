@@ -7,29 +7,35 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace SilentAthleticsWebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private int _pageSize = 5;
+
+   
+
+      
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+ //     public IActionResult Index(int itemListingPage = 1)
+ //     {
+ //         IQueryable<ItemListing> allItemListings = itemRepository.GetAllItemListings();
+ //         IQueryable<ItemListing> someItemListings = allItemListings.OrderBy(i => i.ID).Skip//(itemListingPage - 1) * _pageSize).Take(_pageSize);
+ //
+ //         ViewBag.ItemListingCount = allItemListings.Count();
+ //         return View();
+ //
+ //     }
 
-        [HttpGet]
-        public IActionResult Add()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Add(MeetupScheduler m)
+
+        public IActionResult Index()
         {
             return View();
         }

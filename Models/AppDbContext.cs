@@ -4,13 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace SilentAthleticsWebApp.Models
 {
     public class AppDbContext:DbContext
     {
         //fields/props
 
-        public DbSet<Accounts> Accounts { get; set; }
+        public DbSet<MeetupScheduler> Meetings { get; set; }
+
+        public DbSet<ItemListing> ItemListings { get; set; }
+
+        public DbSet<Account> Accounts { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+      
 
         //constructors
 
@@ -20,19 +28,57 @@ namespace SilentAthleticsWebApp.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Accounts>().HasData(new Accounts
+            modelBuilder.Entity<ItemListing>().HasData(new ItemListing
             {
-                Id=01,
-              FirstName="Brian",
-              LastName="Irving",
-              Address="1333 AWS Ave, Denver CO 80111",
-              Email="Brianirv@outlook.com",
-              BirthDate=02/26/91
-
-
+                ID = 1,
+                Brand = "Neversummer",
+                Description = "Like new",
+                Item = "Snowboard",
+                StartTime = 5,       
+            }) ;
+            modelBuilder.Entity<ItemListing>().HasData(new ItemListing
+            {
+                ID=2,
+                Brand = "Rossignol",
+                Description = "Like new",
+                Item = "Skis",
+                StartTime = 5
             });
+            modelBuilder.Entity<ItemListing>().HasData(new ItemListing
+            {
+                ID=3,
+                Brand = "Arbor",
+                Description = "Like new",
+                Item = "Snowboard",
+                StartTime = 5
+            });
+            modelBuilder.Entity<ItemListing>().HasData(new ItemListing
+            {
+                ID=4,
+                Brand = "Burton",
+                Description = "used",
+                Item = "Snowboard",
+                StartTime = 5
+            });
+            modelBuilder.Entity<ItemListing>().HasData(new ItemListing
+            {
+                ID=5,
+                Brand = "Neversummer",
+                Description = "Like new",
+                Item = "Skis",
+                StartTime = 100
+            });
+            modelBuilder.Entity<Account>().HasData(new Account
+            {
+                Id = 1,
+                Email = "brianirv@yahoo.com",
+                Password = "cambodiandrive",
+                IsAdmin = true
+            });
+
         }
 
         }

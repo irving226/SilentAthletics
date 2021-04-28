@@ -1,0 +1,83 @@
+﻿@model MeetupScheduler
+
+
+
+<title>Schedule A Meetup</title>
+
+
+<h3>Denver, CO</h3>
+<!--The div element for the map -->
+<div id="map">
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc2q36Krmz8kqRNUlPfpV6s__CiAu7wQQ&callback=initMap&libraries=&v=weekly"
+            async></script>
+
+</div>
+
+</br>
+
+
+
+<body>
+
+
+    @using (Html.BeginForm("Create", "MeetupScheduler", FormMethod.Post))
+    {
+
+        <div class="form-horizontal">
+            <h2>Schedule A Meetup</h2>
+        </div>
+
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.SellerID,  new { @class = "form-control col-md-5", @placeholder="Seller ID" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.SellerName, new { @class = "form-control col-md-5", @placeholder = "Seller's Name" })
+        </div>
+        <div class="form-group">
+
+            @Html.TextBoxFor(model => model.BuyerID, new { @class = "form-control col-md-5", @placeholder="Buyer's ID" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.BuyerName, new { @class = "form-control col-md-5", @placeholder="Buyer's Name" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.ItemID, new { @class = "form-control col-md-5" ,@placeholder="Item ID"})
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.StreetAddress, new { @class = "form-control col-md-5", @placeholder ="Street Address" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.City, new { @class = "form-control col-md-5", @placeholder="City" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.State, new { @class = "form-control col-md-5", @placeholder="State"})
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control col-md-5", @placeholder="Zip Code" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Time, new { @class = "form-control col-md-5", @placeholder="Meeting Time" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.MeetingDate, new { @class = "form-control col-md-5", @placeholder="Meeting Date"})
+        </div>
+      
+        <input type="submit" value="Schedule Meeting" />
+    }
+
+
+
+
+
+
+    <div>
+        <a asp-action="Edit">Edit Itenerary</a>&nbsp
+        <a asp-action="Details">View Itenerary</a>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+
+
+</body>

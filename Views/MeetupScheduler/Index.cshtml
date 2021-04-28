@@ -1,0 +1,56 @@
+﻿@model IEnumerable<SilentAthleticsWebApp.Models.MeetupScheduler>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>My Itenerary</h1>
+
+@Html.ActionLink("Create a New Meetup", "Create")
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BuyerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StreetAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MeetingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (MeetupScheduler m in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => m.BuyerName)</td>
+
+
+                <td>@Html.DisplayFor(model => m.StreetAddress)</td>
+
+
+                <td>@Html.DisplayFor(model => m.MeetingDate)</td>
+                <td>@Html.DisplayFor(model => m.Time)</td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = m.ID })
+                    @Html.ActionLink("Details", "Details", new { id = m.ID })
+                    @Html.ActionLink("Delete", "Delete", new { id = m.ID })
+                </td>
+            </tr>
+
+        }
+    </tbody>
+
+
+</table>
+
+
+

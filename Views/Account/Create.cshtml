@@ -1,0 +1,24 @@
+﻿@model SilentAthleticsWebApp.Models.Account
+
+
+
+
+
+@using (Html.BeginForm("CreateAccount", "Account", FormMethod.Post))
+{
+
+    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = "First Name", })
+    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+    @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+    @Html.TextBoxFor(model => model.Email, new { @class = "form-contol" })
+
+    <input type="submit" value="Create Account" />
+
+}
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

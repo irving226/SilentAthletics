@@ -1,0 +1,20 @@
+﻿@model IQueryable<Account>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+
+@foreach (Account a in Model)
+{
+    <h3>@a.FirstName</h3>
+}
+
+

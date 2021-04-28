@@ -5,149 +5,109 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SilentAthleticsWebApp.Data;
+using System.Linq;
 using SilentAthleticsWebApp.Models;
+
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.Web;
+using SilentAthleticsWebApp.Models.Images;
 
 namespace SilentAthleticsWebApp.Controllers
 {
-    public class ItemListingsController : Controller
+    public class ItemListingController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private IItemRepository _itemRepository;
+        private IWebHostEnvironment _env;
+        private string _dir;
 
-        public ItemListingsController(ApplicationDbContext context)
+        public ItemListingController(IItemRepository repository, IWebHostEnvironment env)
         {
-            _context = context;
+            _itemRepository = repository;
+            _env = env;
+            _dir = _env.WebRootPath;
+
         }
 
-        // GET: ItemListings
-        public async Task<IActionResult> Index()
+
+
+        public IActionResult Index()
         {
-            return View(await _context.ItemListings.ToListAsync());
+            IQueryable<ItemListing> allListings = _itemRepository.GetAllItemListings();
+            return View(allListings);
         }
 
-        // GET: ItemListings/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var itemListings = await _context.ItemListings
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (itemListings == null)
-            {
-                return NotFound();
-            }
-
-            return View(itemListings);
-        }
-
-        // GET: ItemListings/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
-
-        // POST: ItemListings/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,SellerID,CategoryID,Brand,Item,Description,StartPrice,StartTime,EndTime")] ItemListings itemListings)
+        public IActionResult Create(ItemListing i)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(itemListings);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(itemListings);
+
+            _itemRepository.AddItemListing(i);
+
+
+            return RedirectToAction("Details", new { id = i.ID });
         }
-
-        // GET: ItemListings/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var itemListings = await _context.ItemListings.FindAsync(id);
-            if (itemListings == null)
-            {
-                return NotFound();
-            }
-            return View(itemListings);
-        }
-
-        // POST: ItemListings/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,SellerID,CategoryID,Brand,Item,Description,StartPrice,StartTime,EndTime")] ItemListings itemListings)
+        public IActionResult FileInModel(SomeForm someForm, ItemListing i)
         {
-            if (id != itemListings.ID)
-            {
-                return NotFound();
-            }
+            Image image = new Image();
+            
 
-            if (ModelState.IsValid)
+
+
+            using (var fileStream = new FileStream(Path.Combine(_dir, $"{someForm.Name}.png"), FileMode.Create, FileAccess.Write))
             {
-                try
-                {
-                    _context.Update(itemListings);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ItemListingsExists(itemListings.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+               
+                someForm.File.CopyTo(fileStream);
+                image.ImagePath = fileStream.Name;
             }
-            return View(itemListings);
+            
+            return RedirectToAction("Index");
         }
 
-        // GET: ItemListings/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+ //
+ //
+ //
+        public IActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //pulls from database and displays it in the view
+            ItemListing item = _itemRepository.GetItemListingById(id);
+            return View(item);
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            ItemListing itemListing = _itemRepository.GetItemListingById(id);
 
-            var itemListings = await _context.ItemListings
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (itemListings == null)
-            {
-                return NotFound();
-            }
+            return View(itemListing);
+        }
+        [HttpPost]
+        public IActionResult Edit(ItemListing itemToUpdate, SomeForm someForm)
+        {
 
-            return View(itemListings);
+            Image image = new Image();
+            image.ImageTitle = someForm.Name;
+            _itemRepository.UpdateItemListing(itemToUpdate);
+            _itemRepository.Save();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            return View();
         }
 
-        // POST: ItemListings/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost]
+        public IActionResult Delete(ItemListing itemListing, int id)
         {
-            var itemListings = await _context.ItemListings.FindAsync(id);
-            _context.ItemListings.Remove(itemListings);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View();
         }
 
-        private bool ItemListingsExists(int id)
-        {
-            return _context.ItemListings.Any(e => e.ID == id);
-        }
+
     }
 }

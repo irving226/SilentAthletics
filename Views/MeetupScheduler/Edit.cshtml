@@ -1,0 +1,39 @@
+﻿@model SilentAthleticsWebApp.Models.MeetupScheduler
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Itenerary</h1>
+
+<hr />
+
+
+
+
+@using (Html.BeginForm("Edit", "MeetupScheduler", FormMethod.Post))
+{
+
+
+    @Html.DisplayFor(model => model.SellerID)
+    @Html.TextBoxFor(model => model.SellerName, new { @class = "form-control", @placeholder = "Seller's Name" })
+    @Html.TextBoxFor(model => model.SellerID, new { @class = "form-control", @placeholder = "Seller's ID" })
+    @Html.TextBoxFor(model => model.BuyerName, new { @class = "form-control", @placeholder = "Buyer's Name" })
+    @Html.TextBoxFor(model => model.BuyerID, new { @class = "form-control", @placeholder = "Buyer's ID" })
+    @Html.TextBoxFor(model => model.ItemID, new { @class = "form-control", @placeholder = "Item's ID" })
+    @Html.TextBoxFor(model => model.StreetAddress, new { @class = "form-control", @placeholder = "Street Address" })
+    @Html.TextBoxFor(model => model.City, new { @class = "form-control", @placeholder = "City or Neighborhood ex(RINO, Captiol Hill" })
+    @Html.TextBoxFor(model => model.State, new { @class = "form-control", @placeholder = "Denver, Aurora etc." })
+    @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control", @placeholder = "Zipcode" })
+
+
+
+    <input type="submit" value="Save Edit" />
+}
+
+<a asp-action="Delete" asp-route-id="@Model.ID">Delete</a>
+<a asp-action="Details" asp-route-id="@Model.ID">Details</a>
+@Html.ActionLink("Create a New Meetup", "Create")
+@Html.ActionLink("Saved Meetups", "Index")
+
+

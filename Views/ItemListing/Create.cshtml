@@ -1,0 +1,52 @@
+﻿@model SilentAthleticsWebApp.Models.ItemListing
+
+
+<h1>Create</h1>
+
+<h4>ItemListing</h4>
+<hr />
+
+<body>
+    @using (Html.BeginForm("FileInModel", "ItemListing", FormMethod.Post))
+    {
+        <div class="form-horizontal">
+            <h2>New Listing</h2>
+        </div>
+
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.SellerID, new { @class = "form-control col-md-5", @placeholder = "Seller's ID" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Item, new { @class = "form-control col-md-5", @placeholder = "Seller's Name" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Brand, new { @class = "form-control col-md-5", @placeholder = "Seller's Name" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control col-md-5", @placeholder = "Seller's Name" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.CategoryID, new { @class = "form-control col-md-5", @placeholder = "Seller's Name" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.StartPrice, new { @class = "form-control col-md-5", @placeholder = "Seller's Name" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control col-md-5", @placeholder = "Seller's Name" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.EndTime, new { @class = "form-control col-md-5", @placeholder = "Seller's Name" })
+        </div>
+
+            <input type="text" name="someForm.Name"/>
+            <input type="file" multiple name="someForm.File"/>
+            <button type="submit">Submit</button>
+
+
+    }
+</body>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
